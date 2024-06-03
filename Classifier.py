@@ -17,5 +17,22 @@ class Classifier:
         nnIndex = np.argmin(distances)
         return self.trainingLabels[nnIndex]
     
-    
-#class Validator:
+
+class Validator:
+    def __init__(self):
+        pass
+
+    def Validate(self, classifier, featureSubset, data, labels):
+        correctPredictions = 0
+        totalInstances = len(data)
+
+        #extracting the feature subset from the data
+        subsetData = np.array(data)[:, featureSubset]
+
+        for i in range(totalInstances):
+            prediction = classifier.Test(subsetData[i])
+            if prediction == labels[i]:
+                correctPredictions += 1
+        
+        accuracy = correctPredictions / totalInstances
+        return accuracy
