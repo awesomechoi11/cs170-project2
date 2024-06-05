@@ -1,5 +1,25 @@
 from FeatureSearch import BackwardElimination, ForwardSelection, FeatureSearch
 
+#from Harrison Cooper found on class Piazza 
+def loadData(self, filename = "small-test-dataset.txt"):
+    self.dataVals= {} #dictionary to hold the data
+
+    file = open(filename, 'r')
+    data = file.readline() #read all the lines into a list 
+
+    for row in data: 
+        row = row.split('\n')
+        row = row[0].split(' ')
+        row.remove('')
+
+        classVal = int(row[0][0]) #getting the instance class 
+
+        for i in row[1:]:
+            for j in i.split():
+                instances = self.dataVals.get(classVal, [])
+                instances.append(float[j]) 
+                self.dataVals[classVal] = instances
+
 print("Welcome to Ojasvi, William, Hailie, and Brandon's Feature Selection Algorithm.")
 
 num_features = int(input("Please enter total number of features: "))
